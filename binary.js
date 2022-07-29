@@ -4,20 +4,19 @@ function getCurrentTime() {
     const minutes = dateNow.getMinutes().toString().padStart(2, "0");
     const seconds = dateNow.getSeconds().toString().padStart(2, "0");
     return `${hours}${minutes}${seconds}`;
-}
+} 
 
 function changeTimeToBinary(timeString) {
-    const binaryArr = timeString.split("").map((time) => parseInt(time, 10).toString(2).padStart(4, "0"));
-    return binaryArr;
+    return timeString.split("").map((time) => parseInt(time, 10).toString(2).padStart(4, "0"));
 }
 
 function actionBinaryView(){
     const binaryTime = changeTimeToBinary(getCurrentTime());
-    for(let i=0;i<6;i++){
+    for(let i=0;i<binaryTime.length;i++){
         const temp = binaryTime[i].split("");
-        for(let j=0;j<4;j++){
+        for(let j=0;j< temp.length;j++){
             let elem = document.getElementById(`col${i+1}row${j+1}`);
-            if (temp[j] == 1){
+            if (temp[j] === '1'){
                 elem.classList.add("work-circle");
             }else{
                 elem.classList.remove("work-circle");
